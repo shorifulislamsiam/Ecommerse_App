@@ -1,4 +1,9 @@
+import 'package:ecommerse_app/Screen/Cart/CartScreen.dart';
+import 'package:ecommerse_app/Screen/Details/Detailscreen.dart';
+import 'package:ecommerse_app/Screen/home/Favourite.dart';
+import 'package:ecommerse_app/Screen/home/home.dart';
 import 'package:flutter/material.dart';
+import 'color.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -10,17 +15,33 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    int currentIndex = 0;
+    List screens = [
+      home(),
+      Favourite(),
+      Detailscreen(),
+      Cartscreen()
+    ];
     return Scaffold(
-      appBar: AppBar(
-        title: Text("hello world"),
+      // appBar: AppBar(
+      //   title: Text("hello world"),
+      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            currentIndex = 0;
+          });
+        },
+        shape: CircleBorder(),
+        backgroundColor: normalColor,
+        child: Icon(Icons.home),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){},child: Icon(Icons.add),),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         elevation: 5,
         height: 60,
         color: Colors.greenAccent,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
@@ -28,25 +49,59 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-              onPressed: (){},
+              onPressed: () {
+                setState(() {
+                  currentIndex = 1;
+                });
+              },
+              icon: Icon(Icons.list_alt_rounded,
+                  size: 40,
+                  color: currentIndex == 1 ? normalColor : Colors.white),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  currentIndex = 2;
+                });
+              },
               icon: Icon(
-                Icons.list_alt_rounded,
+                Icons.favorite_outline,
                 size: 40,
-                color: Colors.white,),
+                color: currentIndex == 2 ? normalColor : Colors.white,
+              ),
             ),
-            GestureDetector(
-              child: Icon(Icons.favorite_outline,size: 40,color: Colors.white,),
+            SizedBox(
+              width: 15,
             ),
-            SizedBox(width: 15,),
-            GestureDetector(
-              child: Icon(Icons.shopping_cart_outlined,size: 40,color: Colors.white,),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  currentIndex = 3;
+                });
+              },
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+                size: 40,
+                color: currentIndex == 3 ? normalColor : Colors.white,
+              ),
             ),
-            GestureDetector(
-              child: Icon(Icons.person,size: 40,color: Colors.white,),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  currentIndex = 4;
+                });
+              },
+              icon: Icon(
+                Icons.person,
+                size: 40,
+                color: currentIndex == 4 ? normalColor : Colors.white,
+              ),
             ),
+            
           ],
         ),
       ),
+      body: screens[currentIndex],
     );
   }
 }
