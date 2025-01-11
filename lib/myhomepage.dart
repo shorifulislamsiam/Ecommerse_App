@@ -19,6 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List screens = [
       home(),
       Favourite(),
+      //Detailscreen(products: products)
       Detailscreen(),
       Cartscreen()
     ];

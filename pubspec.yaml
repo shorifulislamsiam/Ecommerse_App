@@ -62,6 +62,15 @@ flutter:
   assets:
     - assets/slideimage2.jpg
     - assets/slidepage1.jpg
+    - assets/shoe.jpg
+    - assets/dress.jpg
+    - assets/book.jpg
+    - assets/beutiproducts.jpg
+    - assets/bag.jpg
+    - assets/electronic.jpg
+    - assets/headphone1.jpg
+    - assets/sweter.jpg
+    - assets/smartwatch.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
