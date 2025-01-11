@@ -1,17 +1,29 @@
 import 'package:ecommerse_app/Screen/Details/Detailscreen.dart';
 import 'package:ecommerse_app/Screen/home/Widgets/products.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
 class ProductCard extends StatelessWidget {
   final Products products;
-  const ProductCard({super.key, required this.products});
+  final int index;
+  const ProductCard(
+      {super.key,
+      required this.products,
+      required this.index}); //, required this.products
 
   @override
   Widget build(BuildContext context) {
+    //final productProvider = Provider.of<ProductsProvider>(context);
+    //final product = productProvider.products;
     return GestureDetector(
       onTap: () {
+        Provider.of<ProductsProvider>(context, listen: false).selectedIndexImage(index);
         Navigator.push(
-            context, MaterialPageRoute(builder: (_) => Detailscreen()));
+            context,
+            MaterialPageRoute(
+                builder: (_) => Detailscreen()));
       },
       child: Stack(
         //alignment: AlignmentDirectional.topStart,

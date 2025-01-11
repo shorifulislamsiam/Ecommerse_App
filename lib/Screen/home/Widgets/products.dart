@@ -27,41 +27,56 @@ class Products {
       required this.quantity});
 }
 
-List<Products> products = [
-  Products(
-    title: "Wireless Headphones", 
-    Description: "This is a Headphone", 
-    image: "assets/headphone1.jpg", 
-    price: 1200, 
-    review: "(320 Reviews)", 
-    seller: "A islam", 
-    colors: [Colors.black,Colors.blue,Colors.orange], 
-    category: "Electronics", 
-    rate: 4.8, 
-    quantity: 2),
+class ProductsProvider with ChangeNotifier {
+  List<Products> _products = [
+    Products(
+        title: "Wireless Headphones",
+        Description: "This is a Headphone",
+        image: "assets/headphone1.jpg",
+        price: 1200,
+        review: "(320 Reviews)",
+        seller: "A islam",
+        colors: [Colors.black, Colors.blue, Colors.orange],
+        category: "Electronics",
+        rate: 4.8,
+        quantity: 2),
+    Products(
+        title: "Sweter",
+        Description: "This is a Sweter",
+        image: "assets/sweter.jpg",
+        price: 350,
+        review: "{38 reviews}",
+        seller: "B khan",
+        colors: [Colors.red, Colors.pink, Colors.yellow],
+        category: "Dress",
+        rate: 4.4,
+        quantity: 4),
+    Products(
+        title: "Smart Watch",
+        Description: "A digital smart watch",
+        image: "assets/smartwatch.jpg",
+        price: 1120,
+        review: "(99 Review)",
+        seller: "Electro Gadget",
+        colors: [Colors.black, Colors.green, Colors.grey],
+        category: "Electronics",
+        rate: 4.4,
+        quantity: 2),
+  ];
 
-  Products(
-    title: "Sweter", 
-    Description: "This is a Sweter", 
-    image: "assets/sweter.jpg", 
-    price: 350, 
-    review: "{38 reviews}", 
-    seller: "B khan", 
-    colors: [Colors.red,Colors.pink,Colors.yellow], 
-    category: "Dress", 
-    rate: 4.4, 
-    quantity: 4),
-  Products(
-    title: "Smart Watch", 
-    Description: "A digital smart watch", 
-    image: "assets/smartwatch.jpg", 
-    price: 1120, 
-    review: "(99 Review)", 
-    seller: "Electro Gadget", 
-    colors: [Colors.black,Colors.green,Colors.grey], 
-    category: "Electronics", 
-    rate: 4.4, 
-    quantity: 2
-    ),
-    
-];
+  int _selectedImage = 0;
+
+  List<Products> get products => _products;
+  int get selectedIndex => _selectedImage;
+  Products get selectedImage => _products[_selectedImage];
+
+  void addProduct(Products product) {
+    _products.add(product);
+    notifyListeners();
+  }
+
+  void selectedIndexImage(int index) {
+    _selectedImage = index;
+    notifyListeners();
+  }
+}

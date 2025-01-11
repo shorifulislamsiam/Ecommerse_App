@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'color.dart';
 
 class MyHomePage extends StatefulWidget {
+  
   const MyHomePage({super.key});
 
   @override
@@ -98,7 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: currentIndex == 4 ? normalColor : Colors.white,
               ),
             ),
-            
           ],
         ),
       ),
