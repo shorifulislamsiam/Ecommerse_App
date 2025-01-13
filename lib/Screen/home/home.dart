@@ -34,10 +34,8 @@ class _homeState extends State<home> {
                   children: [
                     IconButton(
                         onPressed: () {},
-                        //hoverColor: hoverColor,
                         style: IconButton.styleFrom(
                           backgroundColor: iconColor,
-                          //hoverColor: hoverColor,
                           highlightColor: hoverColor,
                         ),
                         icon: Icon(Icons.list)),
@@ -108,7 +106,8 @@ class _homeState extends State<home> {
                       index:  index,
                       
                     );
-                  })
+                  },
+                  ),
             ],
           ),
         ),

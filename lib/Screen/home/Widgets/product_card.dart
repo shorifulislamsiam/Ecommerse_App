@@ -11,12 +11,11 @@ class ProductCard extends StatelessWidget {
   const ProductCard(
       {super.key,
       required this.products,
-      required this.index}); //, required this.products
+      required this.index});
 
   @override
   Widget build(BuildContext context) {
-    //final productProvider = Provider.of<ProductsProvider>(context);
-    //final product = productProvider.products;
+
     return GestureDetector(
       onTap: () {
         Provider.of<ProductsProvider>(context, listen: false).selectedIndexImage(index);
@@ -26,11 +25,8 @@ class ProductCard extends StatelessWidget {
                 builder: (_) => Detailscreen()));
       },
       child: Stack(
-        //alignment: AlignmentDirectional.topStart,
         children: [
           Container(
-            //width: double.infinity,
-
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
