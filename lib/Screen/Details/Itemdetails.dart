@@ -3,9 +3,14 @@ import 'package:ecommerse_app/color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Itemdetails extends StatelessWidget {
+class Itemdetails extends StatefulWidget {
   const Itemdetails({super.key});
 
+  @override
+  State<Itemdetails> createState() => _ItemdetailsState();
+}
+
+class _ItemdetailsState extends State<Itemdetails> {
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
@@ -36,6 +41,7 @@ class Itemdetails extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
+                //Text("${product.quantity}"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

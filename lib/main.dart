@@ -1,3 +1,4 @@
+
 import 'package:ecommerse_app/Screen/home/Widgets/products.dart';
 import 'package:ecommerse_app/myhomepage.dart';
 import 'package:flutter/material.dart';
@@ -5,14 +6,9 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    // ChangeNotifierProvider(
-    //   create: (context)=>ProductsProvider(),
-    //   child: const MyApp(),
-    //   ),
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context)=>ProductsProvider()),
-          //ChangeNotifierProvider(create: (context)=>ProductsProvider()),
         ],
         child: MyApp(),),
     );
@@ -32,5 +28,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 

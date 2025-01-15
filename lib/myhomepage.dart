@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'color.dart';
 
 class MyHomePage extends StatefulWidget {
-  
   const MyHomePage({super.key});
 
   @override
@@ -52,9 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             IconButton(
               onPressed: () {
-                setState(() {
-                  currentIndex = 1;
-                });
+                // setState(() {
+                //   currentIndex = 1;
+                // });
               },
               icon: Icon(Icons.list_alt_rounded,
                   size: 40,
@@ -77,9 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             IconButton(
               onPressed: () {
-                setState(() {
-                  currentIndex = 3;
-                });
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Cartscreen()));
+                // setState(() {
+                //   currentIndex = 3;
+                // });
               },
               icon: Icon(
                 Icons.shopping_cart_outlined,

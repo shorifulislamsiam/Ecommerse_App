@@ -1,7 +1,7 @@
+import 'package:ecommerse_app/Screen/Details/Addto_cart.dart';
 import 'package:ecommerse_app/Screen/Details/Containerdetails.dart';
 import 'package:ecommerse_app/Screen/Details/ImageSlider.dart';
 import 'package:ecommerse_app/Screen/Details/detailsappbar.dart';
-import 'package:ecommerse_app/Screen/home/Widgets/Addto_cart.dart';
 import 'package:ecommerse_app/Screen/home/Widgets/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

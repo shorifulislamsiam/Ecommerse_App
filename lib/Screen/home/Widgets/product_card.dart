@@ -2,10 +2,8 @@ import 'package:ecommerse_app/Screen/Details/Detailscreen.dart';
 import 'package:ecommerse_app/Screen/home/Widgets/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:provider/provider.dart';
-//import 'package:provider/provider.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   final Products products;
   final int index;
   const ProductCard(
@@ -14,15 +12,20 @@ class ProductCard extends StatelessWidget {
       required this.index});
 
   @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  @override
   Widget build(BuildContext context) {
 
     return GestureDetector(
       onTap: () {
-        Provider.of<ProductsProvider>(context, listen: false).selectedIndexImage(index);
+        Provider.of<ProductsProvider>(context, listen: false).selectedIndexImage(widget.index);
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (_) => Detailscreen()));
+                builder: (_) => const Detailscreen()));
       },
       child: Stack(
         children: [
@@ -31,43 +34,46 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 15),
-                Center(
-                  child: Image.asset(
-                    products.image,
-                    width: 130,
-                    height: 130,
-                    fit: BoxFit.cover,
+                const SizedBox(height: 15),
+                Hero(
+                  tag: widget.products.image,
+                  child: Center(
+                    child: Image.asset(
+                      widget.products.image,
+                      width: 135,
+                      height: 135,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
-                    products.title,
+                    widget.products.title,
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      "\$${products.price}",
+                      "\$${widget.products.price}",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
                     Row(
                       children: [
                         ...List.generate(
-                          products.colors.length,
+                          widget.products.colors.length,
                           (index) => Container(
                             width: 18,
                             height: 18,
-                            margin: EdgeInsets.only(right: 4),
+                            margin: const EdgeInsets.only(right: 4),
                             decoration: BoxDecoration(
-                              color: products.colors[index],
+                              color: widget.products.colors[index],
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -79,6 +85,26 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
+          Positioned(
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                height: 25,
+                width: 30,
+                decoration: const BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(10),
+                  ),
+                ),
+                child: GestureDetector(
+                  onTap: (){},
+                  child: const Icon(Icons.favorite,color: Colors.white, size: 22,),
+                ),
+              ),
+            ),
+            ),
         ],
       ),
     );

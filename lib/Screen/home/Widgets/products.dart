@@ -12,7 +12,7 @@ class Products {
   final List<Color> colors;
   final String category;
   final double rate;
-  final int quantity;
+  int quantity; //late final
 
   Products(
       {required this.title,
@@ -24,11 +24,11 @@ class Products {
       required this.colors,
       required this.category,
       required this.rate,
-      required this.quantity});
+      this.quantity = 1});
 }
 
 class ProductsProvider with ChangeNotifier {
-  List<Products> _products = [
+  final List<Products> _products = [
     Products(
         title: "Wireless Headphones",
         Description: "This is a Headphone",
@@ -39,7 +39,18 @@ class ProductsProvider with ChangeNotifier {
         colors: [Colors.black, Colors.blue, Colors.orange],
         category: "Electronics",
         rate: 4.8,
-        quantity: 2),
+        quantity: 6),
+    Products(
+        title: "Smart Watch",
+        Description: "A digital smart watch",
+        image: "assets/smartwatch.jpg",
+        price: 1120,
+        review: "(99 Review)",
+        seller: "Electro Gadget",
+        colors: [Colors.black, Colors.green, Colors.grey],
+        category: "Electronics",
+        rate: 4.4,
+        quantity: 4),
     Products(
         title: "Sweter",
         Description: "This is a Sweter",
@@ -61,12 +72,15 @@ class ProductsProvider with ChangeNotifier {
         colors: [Colors.black, Colors.green, Colors.grey],
         category: "Electronics",
         rate: 4.4,
-        quantity: 2),
+        quantity: 4),
+    
   ];
 
+  final List<Products> _cart = [];
   int _selectedImage = 0;
 
   List<Products> get products => _products;
+  List<Products> get cart => _cart;
   int get selectedIndex => _selectedImage;
   Products get selectedImage => _products[_selectedImage];
 
@@ -78,5 +92,50 @@ class ProductsProvider with ChangeNotifier {
   void selectedIndexImage(int index) {
     _selectedImage = index;
     notifyListeners();
+  }
+
+  void toggleFavourite(Products product) {
+    if (_cart.contains(product)) {
+      return;
+      //product.quantity++;
+    } else {
+      _cart.add(product);
+    }
+    notifyListeners();
+  }
+
+  void addToCart(Products product) {
+    if (!_cart.contains(product)) {
+      _cart.add(product);
+    }
+    notifyListeners();
+  }
+
+  void increaseQuantity(Products product) {
+    if (_cart.contains(product)) {
+      product.quantity++;
+      notifyListeners();
+      
+    }
+    notifyListeners();
+  }
+  
+
+  void decreaseQuantity(Products product) {
+    if (_cart.contains(product) && product.quantity > 1) {
+      //
+      product.quantity--;
+      notifyListeners();
+    } else {
+      _cart.remove(product);
+    }
+    notifyListeners();
+  }
+
+  int? getproductQuantity(Products product) {
+    if (_cart.contains(product)) {
+      return product.quantity ;
+    }
+    return 0;
   }
 }
