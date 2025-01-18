@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Detailscreen extends StatefulWidget {
+  //final int index;
   const Detailscreen({super.key});
 
   @override
@@ -25,7 +26,6 @@ class _DetailscreenState extends State<Detailscreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
-          
           //for back button share and favorite
           Detailsappbar(),
           //for detail image slider
@@ -33,32 +33,37 @@ class _DetailscreenState extends State<Detailscreen> {
             image: product.image,
             onChange: (index) {
               setState(() {
-                currentImage = index;
+                currentImage = index; //product.image as int;
               });
             },
           ),
-          const SizedBox(height: 2,),
+          const SizedBox(
+            height: 2,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ...List.generate(
-                productsProvider.products.length, 
-                (index)=>AnimatedContainer(duration: Duration(milliseconds: 300),
-                width: currentImage ==index?15:8,
-                height: 8,
-                margin: EdgeInsets.only(right: 4),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: currentImage ==index?Colors.black: Colors.transparent,
-                  border: Border.all(color: Colors.black),
+                productsProvider.products.length,
+                (index) => AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  width: currentImage == index ? 15 : 8,
+                  height: 8,
+                  margin: EdgeInsets.only(right: 4),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: currentImage == index
+                        ? Colors.black
+                        : Colors.transparent,
+                    border: Border.all(color: Colors.black),
+                  ),
                 ),
-                ),
-                ),
-                
-                
+              ),
             ],
           ),
-          const SizedBox(height: 2,),
+          const SizedBox(
+            height: 2,
+          ),
           Containerdetails(),
         ],
       ),

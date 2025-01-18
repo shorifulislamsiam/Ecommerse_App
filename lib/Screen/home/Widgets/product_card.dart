@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductCard extends StatefulWidget {
-  final Products products;
-  final int index;
+   final Products products;
+   final int index;
   const ProductCard(
       {super.key,
       required this.products,
-      required this.index});
+      required this.index
+      });
+      //required this.products, required this.index
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -18,6 +20,10 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
+
+    //final productsProvider = Provider.of<ProductsProvider>(context);
+    //final products = productsProvider.selectedImage;
+    //final List <Products> product2 = productsProvider.products;
 
     return GestureDetector(
       onTap: () {
@@ -39,6 +45,7 @@ class _ProductCardState extends State<ProductCard> {
                   tag: widget.products.image,
                   child: Center(
                     child: Image.asset(
+                      
                       widget.products.image,
                       width: 135,
                       height: 135,
