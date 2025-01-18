@@ -186,10 +186,10 @@ class _ItemdetailsState extends State<Itemdetails> {
               ),
           ],
         ),
-        SizedBox(height: 8,),
+        const SizedBox(height: 8,),
         Text(
           product.Description,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
             color: Colors.blue,

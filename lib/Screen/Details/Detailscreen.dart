@@ -22,12 +22,12 @@ class _DetailscreenState extends State<Detailscreen> {
     final product = productsProvider.selectedImage; // Get the selected product
     //final List<Products> product = productsProvider.products;
     return Scaffold(
-      floatingActionButton: AddtoCart(),
+      floatingActionButton: const AddtoCart(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
           //for back button share and favorite
-          Detailsappbar(),
+          const Detailsappbar(),
           //for detail image slider
           Imageslider(
             image: product.image,
@@ -46,10 +46,10 @@ class _DetailscreenState extends State<Detailscreen> {
               ...List.generate(
                 productsProvider.products.length,
                 (index) => AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   width: currentImage == index ? 15 : 8,
                   height: 8,
-                  margin: EdgeInsets.only(right: 4),
+                  margin: const EdgeInsets.only(right: 4),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: currentImage == index
@@ -64,7 +64,7 @@ class _DetailscreenState extends State<Detailscreen> {
           const SizedBox(
             height: 2,
           ),
-          Containerdetails(),
+          const Containerdetails(),
         ],
       ),
     );

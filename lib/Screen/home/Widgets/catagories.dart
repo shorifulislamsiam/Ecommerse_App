@@ -24,10 +24,10 @@ class Catagories extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 5,),
+                const SizedBox(height: 5,),
                 Text(
                   catagories[index].name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -35,7 +35,7 @@ class Catagories extends StatelessWidget {
               ],
             );
           },
-          separatorBuilder: (context, index) =>SizedBox(width: 20,),
+          separatorBuilder: (context, index) =>const SizedBox(width: 20,),
           itemCount: catagories.length,
           ),
     );

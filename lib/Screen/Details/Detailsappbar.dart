@@ -12,27 +12,27 @@ class Detailsappbar extends StatelessWidget {
           IconButton(
             style: IconButton.styleFrom(
                 //backgroundColor: iconColor,
-                padding: EdgeInsets.all(15)),
+                padding: const EdgeInsets.all(15)),
             onPressed: () {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios),
           ),
-          Spacer(),
+          const Spacer(),
           IconButton(
             style: IconButton.styleFrom(
                 //backgroundColor: iconColor,
-                padding: EdgeInsets.all(15)),
+                padding: const EdgeInsets.all(15)),
             onPressed: () {},
             icon: const Icon(Icons.share_outlined),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           IconButton(
             style: IconButton.styleFrom(
                 //backgroundColor: iconColor,
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 iconSize: 20),
             onPressed: () {},
             icon: const Icon(Icons.favorite_outline),

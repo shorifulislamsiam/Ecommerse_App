@@ -14,19 +14,19 @@ class _ContainerdetailsState extends State<Containerdetails> {
     return Container(
       //width: double.infinity,
       //height: 40,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(40),
           topRight: Radius.circular(40),
         ),
-      ),padding: EdgeInsets.only(
+      ),padding: const EdgeInsets.only(
         left: 20,
         right: 20,
         top: 20,
         bottom: 100,
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Itemdetails(),

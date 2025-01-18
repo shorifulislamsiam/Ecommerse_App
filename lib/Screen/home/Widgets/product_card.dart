@@ -11,7 +11,7 @@ class ProductCard extends StatefulWidget {
       required this.products,
       required this.index
       });
-      //required this.products, required this.index
+      
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -20,10 +20,6 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-
-    //final productsProvider = Provider.of<ProductsProvider>(context);
-    //final products = productsProvider.selectedImage;
-    //final List <Products> product2 = productsProvider.products;
 
     return GestureDetector(
       onTap: () {

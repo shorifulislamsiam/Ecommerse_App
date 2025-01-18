@@ -14,7 +14,7 @@ class Searchbar extends StatelessWidget {
         borderRadius: BorderRadius.circular(30)
       ),
       child:  Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
         child: Row(
           children: [
             Icon(
@@ -22,8 +22,8 @@ class Searchbar extends StatelessWidget {
               color: iconColor,
               size: 30,
               ),
-              SizedBox(width: 15,),
-              Flexible(
+              const SizedBox(width: 15,),
+              const Flexible(
                 flex: 4,
                 child: TextField(
                 decoration: InputDecoration(

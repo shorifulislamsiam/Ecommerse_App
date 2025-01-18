@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:ecommerse_app/Screen/Cart/Checkout.dart';
 import 'package:ecommerse_app/Screen/home/Widgets/products.dart';
 import 'package:ecommerse_app/myhomepage.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +14,12 @@ class Cartscreen extends StatefulWidget {
 }
 
 class _CartscreenState extends State<Cartscreen> {
+
+  
+
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
-    //final product = productsProvider.selectedImage;
-    //final List<Products> product2 = productsProvider.products;
     final List<CartItem> cartItems = productsProvider.cart;
 
     productQuantity(IconData icon, int index) {
@@ -27,10 +31,10 @@ class _CartscreenState extends State<Cartscreen> {
             } else if (icon == Icons.remove &&
                 productsProvider.cart[index].quantity > 1) {
               productsProvider.cart[index].quantity--;
+            } else {
+              productsProvider
+                  .removeFromCart(productsProvider.cart[index].product);
             }
-            // icon == Icons.add
-            //     ? productsProvider.incrementQtn(index)
-            //     : productsProvider.decrementQtn(index);
           });
         },
         child: Icon(
@@ -41,18 +45,19 @@ class _CartscreenState extends State<Cartscreen> {
     }
 
     return Scaffold(
+      //bottomSheet: Checkout(),
       body: SafeArea(
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                     style: IconButton.styleFrom(
                       backgroundColor: Colors.white,
-                      padding: const EdgeInsets.all(15),
+                      //padding: const EdgeInsets.all(15),
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -73,6 +78,7 @@ class _CartscreenState extends State<Cartscreen> {
               ),
             ),
             Expanded(
+              //flex: 2,
               child: ListView.builder(
                   itemCount: cartItems.length,
                   itemBuilder: (context, index) {
@@ -80,7 +86,7 @@ class _CartscreenState extends State<Cartscreen> {
                     return Stack(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(5),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
@@ -127,7 +133,10 @@ class _CartscreenState extends State<Cartscreen> {
                                       height: 5,
                                     ),
                                     Text(
-                                      "\$${item.product.price}",
+                                      "\$${item.product.price}\n"
+                                      "\$${item.calculateCartItemTotalPrice().toStringAsFixed(2)}\n",
+                                      //"\$${productsProvider.calculateTotalPrice().toStringAsFixed(2)}",
+                                      
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -149,7 +158,7 @@ class _CartscreenState extends State<Cartscreen> {
                                 //alignment: Alignment.topRight,
                                 onPressed: () {
                                   productsProvider.removeFromCart(item.product);
-                                  //productsProvider.cart.removeAt(index);
+              
                                   setState(() {});
                                 },
                                 icon: const Icon(
@@ -199,8 +208,13 @@ class _CartscreenState extends State<Cartscreen> {
                         ),
                       ],
                     );
-                  }),
+                  },
+                  ),
             ),
+            Expanded(
+              flex: 1,
+              child: Checkout(),
+              ),
           ],
         ),
       ),

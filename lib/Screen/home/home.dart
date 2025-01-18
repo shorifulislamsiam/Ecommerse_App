@@ -102,7 +102,6 @@ class _homeState extends State<home> {
                   itemCount: product.length,
                   itemBuilder: (context, index) {
                     return ProductCard(
-                      ////product[index],
                        products: product[index],
                        index:  index,
                       

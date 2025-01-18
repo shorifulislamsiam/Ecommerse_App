@@ -17,11 +17,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     int currentIndex = 0;
     List screens = [
-      home(),
-      Favourite(),
-      //Detailscreen(products: products)
-      Detailscreen(),
-      Cartscreen()
+      const home(),
+      const Favourite(),
+      const Detailscreen(),
+      const Cartscreen()
     ];
     return Scaffold(
       // appBar: AppBar(
@@ -33,9 +32,9 @@ class _MyHomePageState extends State<MyHomePage> {
             currentIndex = 0;
           });
         },
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         backgroundColor: normalColor,
-        child: Icon(Icons.home),
+        child: const Icon(Icons.home),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -51,9 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             IconButton(
               onPressed: () {
-                // setState(() {
-                //   currentIndex = 1;
-                // });
+                
               },
               icon: Icon(Icons.list_alt_rounded,
                   size: 40,
@@ -71,16 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: currentIndex == 2 ? normalColor : Colors.white,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
             IconButton(
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => Cartscreen()));
-                // setState(() {
-                //   currentIndex = 3;
-                // });
+                    context, MaterialPageRoute(builder: (_) => const Cartscreen()));
+                
               },
               icon: Icon(
                 Icons.shopping_cart_outlined,

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class Products {
-  //final String id;
   final String title;
   final String Description;
   final String image;
@@ -13,11 +12,10 @@ class Products {
   final List<Color> colors;
   final String category;
   final double rate;
-  int quantity; //late final
+  int quantity; 
 
   Products(
       {
-        //required this.id,
       required this.title,
       required this.Description,
       required this.image,
@@ -33,13 +31,16 @@ class Products {
 class CartItem {
   final Products product;
   late int quantity;
-  CartItem({required this.product, required this.quantity });
+  CartItem({required this.product, required this.quantity});
+
+  double calculateCartItemTotalPrice() {
+    return product.price * quantity;
+  }
 }
 
 class ProductsProvider with ChangeNotifier {
   final List<Products> _products = [
     Products(
-        ///id: "1",
         title: "Wireless Headphones",
         Description: "This is a Headphone",
         image: "assets/headphone1.jpg",
@@ -51,7 +52,6 @@ class ProductsProvider with ChangeNotifier {
         rate: 4.8,
         quantity: 6),
     Products(
-        //id: "2",
         title: "Smart Watch",
         Description: "A digital smart watch",
         image: "assets/smartwatch.jpg",
@@ -63,7 +63,6 @@ class ProductsProvider with ChangeNotifier {
         rate: 4.4,
         quantity: 4),
     Products(
-        //id: "3",
         title: "Sweter",
         Description: "This is a Sweter",
         image: "assets/sweter.jpg",
@@ -75,7 +74,6 @@ class ProductsProvider with ChangeNotifier {
         rate: 4.4,
         quantity: 8),
     Products(
-        //id: "4",
         title: "Smart Watch",
         Description: "A digital smart watch",
         image: "assets/smartwatch.jpg",
@@ -106,100 +104,53 @@ class ProductsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // void toggleFavourite(Products product) {
-  //   if (_cart.contains(product)) {
-  //     return;
-  //     //product.quantity++;
-  //   } else {
-  //     _cart.add(product);
-  //   }
-  //   notifyListeners();
-  // }
-
-//update -15start
-  // void increaseQuantity(Products product) {
-  //   final existingCartItem = _cart.firstWhere((item) => item.product.id == product.id);
-  //   if (existingCartItem != null) {
-  //     existingCartItem.quantity++;
-  //     notifyListeners();
-  //   }
-  // }
-
-  // void decreaseQuantity(Products product) {
-  //   final existingCartItem = _cart.firstWhere((item) => item.product.id == product.id);
-
-  //   if (existingCartItem != null && existingCartItem.quantity > 1) {
-  //     existingCartItem.quantity--;
-  //     notifyListeners();
-  //   }
-  // }
-
-  // int getproductQuantity(Products product) {
-  //   final existingCartItem = _cart.firstWhere((item) => item.product.id == product.id);
-  //   return existingCartItem.quantity;
-  // }
-//update -15end
-
   void increaseQuantity(Products product) {
-    //final existingCartItem =_cart.firstWhere((item) => item.product.id == product.id);
-    if (_products.contains(product)) { // && existingCartItem != null
+    if (_products.contains(product)) {
       product.quantity++;
-      //notifyListeners();
     }
     notifyListeners();
   }
 
   void decreaseQuantity(Products product) {
-    //final existingCartItem =_cart.firstWhere((item) => item.product.id == product.id);
-    if (_products.contains(product) && product.quantity > 1 ) {//&&existingCartItem != null
-        
-      //
+    if (_products.contains(product) && product.quantity > 1) {
       product.quantity--;
       notifyListeners();
     }
-    // else {
-    //   _cart.remove(product);
-    //   notifyListeners();
-    // }
-    //notifyListeners();
   }
 
-  // int? getproductQuantity(Products product) {
-  //   //final existingCartItem =_cart.firstWhere((item) => item.product.id == product.id);
-  //   if (_cart.contains(product)) {
-  //     return product.quantity;
-  //   }
-  //   return 0;
-  // }
+
   int? getproductQuantity(Products product) {
-    //final existingCartItem =_cart.firstWhere((item) => item.product.id == product.id);
     if (_products.contains(product)) {
       return product.quantity;
     }
     return 0;
   }
 
-  // void addToCart(Products product) {
-  //   final existingCartItem = _cart.firstWhere((item) => item.product.id == product.id);
-
-  //   if (existingCartItem != null) {
-  //     existingCartItem.quantity++;
-  //   } else {
-  //     _cart.add(CartItem(product: product));
-  //   }
-  //   notifyListeners();
-  // }
   void addToCart(Products product) {
-    
     _cart.add(CartItem(product: product, quantity: product.quantity));
     notifyListeners();
   }
 
   void removeFromCart(Products product) {
-    _cart.removeWhere((item) => item.product.quantity== product.quantity);
-    notifyListeners();
+    final cartItem = _cart.firstWhere((item) => item.product == product);
+    if (cartItem != null) {
+      if (cartItem.quantity > 1) {
+        cartItem.quantity--;
+      } else {
+        _cart.remove(cartItem);
+      }
+      notifyListeners();
+    }
   }
 
-  // incrementQtn(int index) => _cart[index].quantity++;
-  // decrementQtn(int index) => _cart[index].quantity--;
+  //calculate products price with quantity
+  double calculateTotalPrice() {
+    double totalPrice = 0.0;
+    for (var item in _cart) {
+      totalPrice += item.product.price * item.quantity;
+      //return totalPrice;
+    }
+    return totalPrice;
+    //return totalPrice;
+  }
 }
