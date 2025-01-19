@@ -1,17 +1,13 @@
 import 'package:ecommerse_app/Screen/Details/Detailscreen.dart';
+import 'package:ecommerse_app/Screen/home/Widgets/Favourite.dart';
 import 'package:ecommerse_app/Screen/home/Widgets/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductCard extends StatefulWidget {
-   final Products products;
-   final int index;
-  const ProductCard(
-      {super.key,
-      required this.products,
-      required this.index
-      });
-      
+  final Products products;
+  final int index;
+  const ProductCard({super.key, required this.products, required this.index});
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -20,14 +16,17 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
+    final favouriteItem = Provider.of<FavouriteProvider>(context);
+    //final fvitem = favouriteItem.addFavouriteItem;
+    //final bool provider = favouriteItem.isExist();
+    final List<Products> favItem = favouriteItem.favourite;
 
     return GestureDetector(
       onTap: () {
-        Provider.of<ProductsProvider>(context, listen: false).selectedIndexImage(widget.index);
+        Provider.of<ProductsProvider>(context, listen: false)
+            .selectedIndexImage(widget.index);
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (_) => const Detailscreen()));
+            context, MaterialPageRoute(builder: (_) => const Detailscreen()));
       },
       child: Stack(
         children: [
@@ -41,7 +40,6 @@ class _ProductCardState extends State<ProductCard> {
                   tag: widget.products.image,
                   child: Center(
                     child: Image.asset(
-                      
                       widget.products.image,
                       width: 135,
                       height: 135,
@@ -64,8 +62,8 @@ class _ProductCardState extends State<ProductCard> {
                   children: [
                     Text(
                       "\$${widget.products.price}",
-                      style:
-                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 17),
                     ),
                     Row(
                       children: [
@@ -92,22 +90,37 @@ class _ProductCardState extends State<ProductCard> {
             child: Align(
               alignment: Alignment.topRight,
               child: Container(
-                height: 25,
-                width: 30,
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(10),
+                  height: 25,
+                  width: 30,
+                  decoration: const BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(10),
+                    ),
                   ),
-                ),
-                child: GestureDetector(
-                  onTap: (){},
-                  child: const Icon(Icons.favorite,color: Colors.white, size: 22,),
-                ),
-              ),
+                  child: Consumer<FavouriteProvider>(
+                      builder: (context, FavouriteProvider, child) {
+                    return GestureDetector(
+                      onTap: () {
+                        favouriteItem.addFavouriteItem(widget.products);
+                       var snackBar = SnackBar(
+                          content: Text("Added to Favourite"),
+                          duration: Duration(seconds: 1),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      child: Icon(
+                        favouriteItem.isExist(widget.products)
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        //color: Colors.black,
+                        size: 22,
+                      ),
+                    );
+                  })),
             ),
-            ),
+          ),
         ],
       ),
     );

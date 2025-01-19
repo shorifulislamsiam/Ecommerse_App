@@ -1,4 +1,5 @@
 
+import 'package:ecommerse_app/Screen/home/Widgets/Favourite.dart';
 import 'package:ecommerse_app/Screen/home/Widgets/products.dart';
 import 'package:ecommerse_app/myhomepage.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ void main() {
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context)=>ProductsProvider()),
+          ChangeNotifierProvider(create: (context)=>FavouriteProvider())
         ],
         child: MyApp(),),
     );

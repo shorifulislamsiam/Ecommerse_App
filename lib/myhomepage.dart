@@ -1,6 +1,6 @@
 import 'package:ecommerse_app/Screen/Cart/CartScreen.dart';
 import 'package:ecommerse_app/Screen/Details/Detailscreen.dart';
-import 'package:ecommerse_app/Screen/home/Favourite.dart';
+import 'package:ecommerse_app/Screen/Favourite/Favourite.dart';
 import 'package:ecommerse_app/Screen/home/home.dart';
 import 'package:flutter/material.dart';
 import 'color.dart';
@@ -49,9 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-              onPressed: () {
-                
-              },
+              onPressed: () {},
               icon: Icon(Icons.list_alt_rounded,
                   size: 40,
                   color: currentIndex == 1 ? normalColor : Colors.white),
@@ -59,7 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               onPressed: () {
                 setState(() {
-                  currentIndex = 2;
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Favourite()));
+                  //currentIndex = 2;
                 });
               },
               icon: Icon(
@@ -73,9 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             IconButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => const Cartscreen()));
-                
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const Cartscreen()));
               },
               icon: Icon(
                 Icons.shopping_cart_outlined,
