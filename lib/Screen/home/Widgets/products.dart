@@ -146,13 +146,26 @@ class ProductsProvider with ChangeNotifier {
     double totalPrice = 0.0;
     for (var item in _cart) {
       totalPrice += item.product.price * item.quantity;
+      notifyListeners();
       //return totalPrice;
     }
     return totalPrice;
+
     //return totalPrice;
   }
 
   List<Products> getProductsByCategory(String category) {
-    return _products.where((product) => product.category == product.category).toList();
+    return _products
+        .where((product) => product.category == product.category)
+        .toList();
+  }
+
+  double calculatePrice() {
+    double totalPrice = 0.0;
+    for (var item in _cart) {
+      totalPrice += item.calculateCartItemTotalPrice();
+      //notifyListeners();
+    }
+    return totalPrice;
   }
 }
