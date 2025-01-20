@@ -15,8 +15,6 @@ class Cartscreen extends StatefulWidget {
 
 class _CartscreenState extends State<Cartscreen> {
 
-  
-
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
@@ -45,7 +43,6 @@ class _CartscreenState extends State<Cartscreen> {
     }
 
     return Scaffold(
-      //bottomSheet: Checkout(),
       body: SafeArea(
         child: Column(
           children: [
@@ -57,7 +54,6 @@ class _CartscreenState extends State<Cartscreen> {
                   IconButton(
                     style: IconButton.styleFrom(
                       backgroundColor: Colors.white,
-                      //padding: const EdgeInsets.all(15),
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -134,7 +130,7 @@ class _CartscreenState extends State<Cartscreen> {
                                     ),
                                     Text(
                                       "\$${item.product.price}\n"
-                                      "\$${item.calculateCartItemTotalPrice().toStringAsFixed(2)}\n",
+                                      "Total:\$${item.calculateCartItemTotalPrice().toStringAsFixed(2)}\n",
                                       //"\$${productsProvider.calculateTotalPrice().toStringAsFixed(2)}",
                                       
                                       style: const TextStyle(
@@ -155,7 +151,6 @@ class _CartscreenState extends State<Cartscreen> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               IconButton(
-                                //alignment: Alignment.topRight,
                                 onPressed: () {
                                   productsProvider.removeFromCart(item.product);
               
@@ -211,7 +206,7 @@ class _CartscreenState extends State<Cartscreen> {
                   },
                   ),
             ),
-            Expanded(
+            const Expanded(
               flex: 1,
               child: Checkout(),
               ),

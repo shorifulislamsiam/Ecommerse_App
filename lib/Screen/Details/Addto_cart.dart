@@ -17,7 +17,6 @@ class _AddtoCartState extends State<AddtoCart> {
     final productsProvider =
         Provider.of<ProductsProvider>(context, listen: false);
     final product = productsProvider.selectedImage;
-
     currentIndex = productsProvider.getproductQuantity(product)??1;
   }
 
@@ -26,13 +25,11 @@ class _AddtoCartState extends State<AddtoCart> {
     final productsProvider = Provider.of<ProductsProvider>(context);
     final product = productsProvider.selectedImage;
     late int currentIndex = productsProvider.getproductQuantity(product) ?? 1;
-    //productsProvider.addToCart(product);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
         height: 85,
-        //width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           color: Colors.black,
@@ -71,7 +68,6 @@ class _AddtoCartState extends State<AddtoCart> {
                     ),
                     Text(
                       productsProvider.getproductQuantity(product).toString(),
-                      //currentIndex.toString(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -86,7 +82,6 @@ class _AddtoCartState extends State<AddtoCart> {
                         setState(() {
                           currentIndex
                           =productsProvider.getproductQuantity(product) ?? 1;
-                          //productsProvider.getproductQuantity(product);
                         });
                       },
                       iconSize: 18,
@@ -98,12 +93,12 @@ class _AddtoCartState extends State<AddtoCart> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Text(
                 "\$${(product.price * currentIndex).toStringAsFixed(2)}",
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -111,10 +106,9 @@ class _AddtoCartState extends State<AddtoCart> {
               GestureDetector(
                 onTap: () {
                   productsProvider.addToCart(product);
-                  //productsProvider.toggleFavourite(product);
                   const snackBar = SnackBar(
                     content: Text(
-                      "Succesfully Added",
+                      "Successfully Added",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -126,7 +120,6 @@ class _AddtoCartState extends State<AddtoCart> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Container(
-                  //height: 55,
                   decoration: BoxDecoration(
                     color: Colors.amberAccent,
                     borderRadius: BorderRadius.circular(35),

@@ -9,7 +9,6 @@ class Checkout extends StatelessWidget {
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
     final double totalPrice = productsProvider.calculateTotalPrice();
-    //final item = cartItems[index];
     return Scaffold(
       body: Container(
         height: 300,
@@ -57,7 +56,7 @@ class Checkout extends StatelessWidget {
              Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Subtotal",
                   style: TextStyle(
                     fontSize: 16,
@@ -67,7 +66,7 @@ class Checkout extends StatelessWidget {
                 ),
                 Text(
                   "\$${totalPrice.toStringAsFixed(2)}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -80,7 +79,7 @@ class Checkout extends StatelessWidget {
              Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Total",
                   style: TextStyle(
                     fontSize: 18,
@@ -89,21 +88,21 @@ class Checkout extends StatelessWidget {
                 ),
                 Text(
                   "\$${totalPrice.toStringAsFixed(2)}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             ElevatedButton(
               onPressed: (){}, 
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
-                minimumSize: Size(double.infinity, 55)
+                minimumSize: const Size(double.infinity, 55)
               ),
-              child: Text(
+              child: const Text(
                 "Check out",
                 style: TextStyle(
                   fontSize: 16,

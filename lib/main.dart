@@ -12,7 +12,8 @@ void main() {
           ChangeNotifierProvider(create: (context)=>ProductsProvider()),
           ChangeNotifierProvider(create: (context)=>FavouriteProvider())
         ],
-        child: MyApp(),),
+        child: MyApp(),
+        ),
     );
 }
 

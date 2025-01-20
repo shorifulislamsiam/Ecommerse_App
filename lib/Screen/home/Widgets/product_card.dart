@@ -17,9 +17,7 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     final favouriteItem = Provider.of<FavouriteProvider>(context);
-    //final fvitem = favouriteItem.addFavouriteItem;
-    //final bool provider = favouriteItem.isExist();
-    final List<Products> favItem = favouriteItem.favourite;
+    //final List<Products> favItem = favouriteItem.favourite;
 
     return GestureDetector(
       onTap: () {
@@ -93,19 +91,21 @@ class _ProductCardState extends State<ProductCard> {
                   height: 25,
                   width: 30,
                   decoration: const BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.green,
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(20),
                       bottomLeft: Radius.circular(10),
+                      topLeft: Radius.circular(20),
                     ),
                   ),
                   child: Consumer<FavouriteProvider>(
                       builder: (context, FavouriteProvider, child) {
                     return GestureDetector(
                       onTap: () {
-                        favouriteItem.addFavouriteItem(widget.products);
+                       
+                       bool added= favouriteItem.addFavouriteItem(widget.products);
                        var snackBar = SnackBar(
-                          content: Text("Added to Favourite"),
+                          content: Text(added?"Added to Favorite":"Removed from Favorite"),
                           duration: Duration(seconds: 1),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -114,7 +114,7 @@ class _ProductCardState extends State<ProductCard> {
                         favouriteItem.isExist(widget.products)
                             ? Icons.favorite
                             : Icons.favorite_border,
-                        //color: Colors.black,
+                        color: Colors.red,
                         size: 22,
                       ),
                     );

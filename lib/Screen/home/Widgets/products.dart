@@ -12,11 +12,10 @@ class Products {
   final List<Color> colors;
   final String category;
   final double rate;
-  int quantity; 
+  int quantity;
 
   Products(
-      {
-      required this.title,
+      {required this.title,
       required this.Description,
       required this.image,
       required this.price,
@@ -118,9 +117,6 @@ class ProductsProvider with ChangeNotifier {
     }
   }
 
-
-
-
   int? getproductQuantity(Products product) {
     if (_products.contains(product)) {
       return product.quantity;
@@ -154,5 +150,9 @@ class ProductsProvider with ChangeNotifier {
     }
     return totalPrice;
     //return totalPrice;
+  }
+
+  List<Products> getProductsByCategory(String category) {
+    return _products.where((product) => product.category == product.category).toList();
   }
 }

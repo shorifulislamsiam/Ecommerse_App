@@ -23,9 +23,6 @@ class _MyHomePageState extends State<MyHomePage> {
       const Cartscreen()
     ];
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("hello world"),
-      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
@@ -59,7 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState(() {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => Favourite()));
-                  //currentIndex = 2;
                 });
               },
               icon: Icon(

@@ -2,40 +2,35 @@ import 'package:ecommerse_app/Screen/home/Widgets/products.dart';
 import 'package:flutter/material.dart';
 
 class FavouriteProvider extends ChangeNotifier {
-  // late final Products product;
-  // late final int quantity;
-  // FavouriteProvider({required this.product, required this.quantity});
-
-  //final List<FavouriteProvider> _favourite = [];
   final List<Products> _favourite = [];
-  //List<FavouriteProvider> get favourite => _favourite;
   List<Products> get favourite => _favourite;
 
-  void addFavouriteItem(Products product) {
+  bool addFavouriteItem(Products product) {
     if (_favourite.contains(product)) {
       _favourite.remove(product);
-      ChangeNotifier();
+      notifyListeners();
       print('Product removed from favorites: ${product.title}');
-      
+      return false;
     } else {
       _favourite.add(product);
-      ChangeNotifier();
+      notifyListeners();
       print('Product added to favorites: ${product.title}');
+      return true;
     }
-    ChangeNotifier();
+    //notifyListeners();
   }
 
   void increaseFavouriteItem(Products product) {
     if (_favourite.contains(product)) {
       product.quantity++;
-      ChangeNotifier();
+      notifyListeners();
     }
   }
 
   void decreaseFavouriteItem(Products product) {
     if (_favourite.contains(product) && product.quantity > 1) {
       product.quantity--;
-      ChangeNotifier();
+      notifyListeners();
     }
   }
 

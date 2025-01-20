@@ -38,18 +38,18 @@ class _homeState extends State<home> {
                           backgroundColor: iconColor,
                           highlightColor: hoverColor,
                         ),
-                        icon: Icon(Icons.list)),
+                        icon: const Icon(Icons.list)),
                     IconButton(
                         onPressed: () {},
                         style: IconButton.styleFrom(
                           backgroundColor: iconColor,
                         ),
-                        icon: Icon(Icons.favorite_outline_outlined))
+                        icon: const Icon(Icons.favorite_outline_outlined))
                   ],
                 ),
               ),
-              Searchbar(),
-              SizedBox(
+              const Searchbar(),
+              const SizedBox(
                 height: 5,
               ),
               slideimage(
@@ -62,15 +62,15 @@ class _homeState extends State<home> {
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              Catagories(),
-              SizedBox(
+              const Catagories(),
+              const SizedBox(
                 height: 1,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -101,10 +101,13 @@ class _homeState extends State<home> {
                   ),
                   itemCount: product.length,
                   itemBuilder: (context, index) {
-                    return ProductCard(
-                       products: product[index],
-                       index:  index,
-                      
+                    return Container(
+                      color: Colors.white,
+                      child: ProductCard(
+                         products: product[index],
+                         index:  index,
+                        
+                      ),
                     );
                   },
                   ),

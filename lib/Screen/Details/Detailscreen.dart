@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Detailscreen extends StatefulWidget {
-  //final int index;
   const Detailscreen({super.key});
-
   @override
   State<Detailscreen> createState() => _DetailscreenState();
 }
@@ -19,8 +17,7 @@ class _DetailscreenState extends State<Detailscreen> {
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
-    final product = productsProvider.selectedImage; // Get the selected product
-    //final List<Products> product = productsProvider.products;
+    final product = productsProvider.selectedImage;
     return Scaffold(
       floatingActionButton: const AddtoCart(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -33,7 +30,7 @@ class _DetailscreenState extends State<Detailscreen> {
             image: product.image,
             onChange: (index) {
               setState(() {
-                currentImage = index; //product.image as int;
+                currentImage = index;
               });
             },
           ),

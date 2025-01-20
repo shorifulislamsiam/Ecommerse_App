@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 class Imageslider extends StatefulWidget {
   final Function(int) onChange;
   final String image;
-  //final List<String> image;
   const Imageslider({super.key, required this.onChange, required this.image});
 
   @override

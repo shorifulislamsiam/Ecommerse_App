@@ -12,8 +12,6 @@ class _ContainerdetailsState extends State<Containerdetails> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //width: double.infinity,
-      //height: 40,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
