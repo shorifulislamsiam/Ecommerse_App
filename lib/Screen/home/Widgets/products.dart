@@ -83,6 +83,17 @@ class ProductsProvider with ChangeNotifier {
         category: "Electronics",
         rate: 4.4,
         quantity: 4),
+    Products(
+        title: "flutter books",
+        Description: "Books for beginner",
+        image: "assets/book (2).jpg",
+        price: 280,
+        review: "(24 Review)",
+        seller: "Books shop",
+        colors: [Colors.black, Colors.green, Colors.grey],
+        category: "Books",
+        rate: 4.4,
+        quantity: 4),
   ];
 
   final List<CartItem> _cart = [];
@@ -155,9 +166,11 @@ class ProductsProvider with ChangeNotifier {
   }
 
   List<Products> getProductsByCategory(String category) {
-    return _products
-        .where((product) => product.category == product.category)
-        .toList();
+    return _products.where((product) => product.category == category).toList();
+  }
+
+  List<Products> getProductsByCategoryall(String category) {
+    return _products.where((product) => product.category == category).toList();
   }
 
   double calculatePrice() {
@@ -167,5 +180,13 @@ class ProductsProvider with ChangeNotifier {
       //notifyListeners();
     }
     return totalPrice;
+  }
+
+  int getTotalCartItem() {
+    int totalCartItem = 0;
+    for (var item in _cart) {
+      totalCartItem += item.quantity;
+    }
+    return totalCartItem;
   }
 }

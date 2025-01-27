@@ -72,6 +72,7 @@ flutter:
     - assets/headphone1.jpg
     - assets/sweter.jpg
     - assets/smartwatch.jpg
+    - assets/book (2).jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
